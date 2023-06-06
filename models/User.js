@@ -14,9 +14,9 @@ const userSchema = new mongoose.Schema({
     type: String, 
     required: true
   },
-  group: {
+  thought: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Group"
+    ref: "Thought"
   }
 },
 {

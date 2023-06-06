@@ -1,9 +1,9 @@
 
 
-const Group = require("./Group");
+const Thought = require("./Thought");
 const User = require("./User");
 
 module.exports = {
-  Group,
+  Thought,
   User
 }
