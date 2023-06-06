@@ -1,35 +1,34 @@
-
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  fname: {
+  username: {
     type: String,
-    required: true
+    required: true,
+    unique: true,
+    trim: true,
   },
-  lname: {
-    type: String,
-    required: true
-  },
+
   email: {
-    type: String, 
-    required: true
+    type: String,
+    required: true,
+    unique: true,
+    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Not a valid email, please try again'],
   },
-  thought: {
+
+  thoughts: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Thought"
-  }
-},
-{
-  toJSON: {
-    virtuals: true,
+    ref: "Thought",
   },
-  id: false,
+
+  friends: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  }],
 });
 
-userSchema.virtual('fullname').get(function () {
-  return `${this.fname} ${this.lname}` ;
+userSchema.virtual('friendCount').get(function () {
+  return `${this.friends.length}`;
 });
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;
-
