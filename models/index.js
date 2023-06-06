@@ -3,5 +3,5 @@ const User = require("./User");
 
 module.exports = {
   Thought,
-  User
-}
+  User,
+};
