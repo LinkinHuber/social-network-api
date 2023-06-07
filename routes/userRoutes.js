@@ -1,42 +1,37 @@
-const router = require("express").Router();
-const { getAllUsers, getUserById, createUser, updateUserById } = require("../controllers/userController");
+const { User } = require('../models');
+const router = require('express').Router();
+
+router.get('/', async (req, res) => {
+    try {
+      const result = await User.find({})
+      res.status(200).json({result})
+    } catch(err){
+      console.log(err)
+      res.status(400).json({err} )
+    }
+  });
 
 
-router.get("/user", async (req, res) => {
-  try {
-    const users = await getAllUsers()
-    res.status(200).json({ status: "success", payload: users })
-  } catch( error ){
-    res.status(500).json({ msg: error.message })
-  }
-})
-
-router.get("/user/:id", async (req, res) => {
-  try {
-    const user = await getUserById(req.params.id)
-    res.status(200).json({ status: "success", payload: user })
-  } catch( error ){
-    res.status(500).json({ msg: error.message })
-  }
-})
-
-router.post("/user", async( req, res) => {
-  try {
-    const newUser = await createUser(req.body)
-    res.status(200).json({ status: "success", payload: newUser })
-  } catch(error){
-    res.status(500).json({ msg: error.message })
-  }
-})
-
-router.put("/user/:id", async (req, res) => {
-  try {
-    const user = await updateUserById(req.params.id, req.body)
-    res.status(200).json({ status: "success", payload: user })
-  } catch( error ){
-    res.status(500).json({ msg: error.message })
-  }
-})
+  router.get('/:id', async (req, res) => {
+    try {
+      const result = await User.findById(req.params.id).populate({path: 'thought'})
+      res.status(200).json({result})
+    } catch(err){
+      console.log(err)
+      res.status(400).json({err} )
+    }
+  });
 
 
+  router.post('/', async (req, res) => {
+    try {
+      const newUser = await User.create(req.body)
+      res.status(200).json({newUser})
+    } catch(err){
+      console.log(err)
+      res.status(400).json({err} )
+    }
+  });
+
+  
 module.exports = router;
