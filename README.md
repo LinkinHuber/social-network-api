@@ -24,10 +24,11 @@
 - THEN I am able to successfully create and delete reactions to thoughts and add and remove friends to a user’s friend list
 
 ## Link to demo video
-- 
+- https://watch.screencastify.com/v/foAOV8iMb18HoLr2ssq6
 
 ## Screenshots of webpage
-![Screenshot of home page]()
+![Screenshot of home page](./images/Screenshot%202023-06-08%20003008.png)
+![Screenshot of home page](./images/Screenshot%202023-06-08%20003103.png)
 
 ## Questions?
   - If you have any additional questions please feel free to reach out to me!
